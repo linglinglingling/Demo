@@ -1,0 +1,21 @@
+#addGroupPopover >tbody >tr >th {
+	color:#50575F;
+	background: none repeat scroll 0% 0% #F5F5F5;
+	padding: 6px;
+	font-weight: bold;
+	margin-right:8px;
+	vertical-align: top;
+	line-height: 24px;
+}
+#addGroupPopover >tbody >tr >td >div{
+	margin-left: 5px;
+	background-color: #FFF;
+}
+#addGroupNameCheck{
+    color:#F00;
+    font-weight: bold;
+}
+#addGroupIDCheck {
+    color:#F00;
+    font-weight: bold;
+}

@@ -4,6 +4,9 @@ from django.template import loader, Context
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from models import Users
+import models
+import json
+
 
 
 
@@ -35,3 +38,36 @@ def login(request):
 # 		# 返回登录界面
 #
 # 		return render_to_response('login.html')
+
+
+def addGroup(request):
+    result={}
+    ID=request.GET['groupID']
+    Name=request.GET['GroupName']
+    if 'permitSudo' in request.GET:
+        permitSudo=True
+    else:
+        permitSudo=False
+    if 'allowRepeatedGIDs' in request.GET:
+        repeated=True
+    else:
+        repeated=False
+    id=models.Groups.objects.filter(groupID=ID)
+    if len(id)!=0:
+        return HttpResponse(2)
+    name=models.Groups.objects.filter(groupName=Name)
+    if len(name)!=0:
+        return HttpResponse(1)
+    # message=ID+'\t'+Name+'\t'+str(permitSudo)+'\t'+str(repeated);
+    p=models.Groups(groupID=ID,groupName=Name,permitSudo=permitSudo, allowedRepeat=repeated)
+    p.save()
+    return HttpResponse(0)
+
+def refreshHome(request):
+    groups=models.Groups.objects.all()
+    return render_to_response('home.html',{'groupsObjects':groups})
+
+
+
+
+
