@@ -6,6 +6,7 @@ from django.contrib import auth
 from models import Users
 import models
 import json
+from django.core import serializers
 
 
 
@@ -40,10 +41,25 @@ def login(request):
 # 		return render_to_response('login.html')
 
 
+def checkAddGroup(request):
+    ID = request.GET.get('addGroupID', None)
+    name = request.GET.get('addGroupName', None)
+    if ID is not None:
+        obj=models.Groups.objects.filter(groupID=ID)
+        if len(obj)!=0:
+            return HttpResponse("false")
+        else:
+            return HttpResponse("true")
+    if name!=None:
+        obj=models.Groups.objects.filter(groupName=name)
+        if len(obj)!=0:
+            return HttpResponse("false")
+        else:
+            return HttpResponse("true")
+
 def addGroup(request):
-    result={}
-    ID=request.GET['groupID']
-    Name=request.GET['GroupName']
+    ID=request.GET['addGroupID']
+    Name=request.GET['addGroupName']
     if 'permitSudo' in request.GET:
         permitSudo=True
     else:
@@ -52,20 +68,51 @@ def addGroup(request):
         repeated=True
     else:
         repeated=False
-    id=models.Groups.objects.filter(groupID=ID)
-    if len(id)!=0:
-        return HttpResponse(2)
-    name=models.Groups.objects.filter(groupName=Name)
-    if len(name)!=0:
-        return HttpResponse(1)
-    # message=ID+'\t'+Name+'\t'+str(permitSudo)+'\t'+str(repeated);
+    groups=models.Groups.objects.all()
+    obj=models.Groups.objects.filter(groupID=ID)
+    if len(obj)!=0:
+        return render_to_response('home.html',{'groupsObjects':groups})
     p=models.Groups(groupID=ID,groupName=Name,permitSudo=permitSudo, allowedRepeat=repeated)
     p.save()
-    return HttpResponse(0)
+    return render_to_response('home.html',{'groupsObjects':groups})
 
-def refreshHome(request):
+
+def index(request):
     groups=models.Groups.objects.all()
     return render_to_response('home.html',{'groupsObjects':groups})
+
+
+def search(request):
+    name=request.GET["groupName"]
+    obj=models.Groups.objects.filter(groupName=name)
+    data = serializers.serialize("json", obj)
+    return HttpResponse(data)
+
+def edit(request):
+    Name=request.GET['editGroupName']
+    if 'permitSudo123' in request.GET:
+        permitSudo123=True
+    else:
+        permitSudo123=False
+    ID=request.GET['editGroupID']
+    models.Groups.objects.filter(groupID=ID).update(groupName=Name,permitSudo=permitSudo123)
+    groups=models.Groups.objects.all()
+    return render_to_response('home.html',{'groupsObjects':groups})
+
+def delete(request):
+    ID=request.GET['editGroupID']
+    models.Groups.objects.filter(groupID=ID).delete()
+    groups=models.Groups.objects.all()
+    return render_to_response('home.html',{'groupsObjects':groups})
+
+def manipulate(request):
+    if "editGroup" in request.GET:
+        return edit(request)
+    elif "deleteGroup" in request.GET:
+        return delete(request)
+    elif "addGroup" in request.GET:
+        return addGroup(request)
+
 
 
 

@@ -8,6 +8,9 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', views.login),
-    url(r'^ajax/checkAddGroup/',views.addGroup),
-    url(r'^home/$',views.refreshHome)
+    url(r'^checkAddGroup/',views.checkAddGroup),
+    url(r'^addGroup/$',views.addGroup),
+    url(r'^search/',views.search),
+    url(r'^editGroup/',views.edit),
+    url(r'^$',views.manipulate)
 )
