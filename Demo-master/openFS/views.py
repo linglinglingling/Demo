@@ -6,8 +6,7 @@ from django.contrib import auth
 from models import Users
 import models
 import json
-
-
+from django.core import serializers
 
 def login(request):
     username = request.GET.get('username', None)
@@ -45,19 +44,47 @@ def addUser(request):
     FullName=request.GET['FullName']
     EMail=request.GET['EMail']
     SSHKey=request.GET['SSHKey']
+    GroupName=request.GET['groupName']
     id=models.Users.objects.filter(userID=ID)
     if len(id)!=0:
         return HttpResponse(2)
     name=models.Users.objects.filter(username=Name)
     if len(name)!=0:
         return HttpResponse(1)
-    password=models.Users.objects.filter(password=Password)
-    if len(password)!=0:
-        return HttpResponse(3)
-    p=models.Users(userID=ID,username=Name,password=Password,fullname=FullName,email=EMail,sshkey=SSHKey)
+    p=models.Users(userID=ID,username=Name,password=Password,fullname=FullName,email=EMail,sshkey=SSHKey,groupName=GroupName)
     p.save()
     return HttpResponse(0)
 
 def refreshHome(request):
     Users=models.Users.objects.all()
     return render_to_response('home.html',{'UsersObjects':Users})
+
+def getUser(request):
+    name=request.GET['UserName']
+    User=models.Users.objects.filter(username=name)
+    data = serializers.serialize("json", User)
+    return HttpResponse(data)
+
+def EditUser(request):
+    ID=request.GET['UserID']
+    Name=request.GET['UserName']
+    Password=request.GET['UserPassword']
+    FullName=request.GET['FullName']
+    EMail=request.GET['EMail']
+    SSHKey=request.GET['SSHKey']
+    GroupName=request.GET['groupName']
+    # name=models.Users.objects.filter(username=Name)
+    # if len(name)!=0:
+    #     return HttpResponse(1)
+    models.Users.objects.filter(userID=ID).update(username=Name,password=Password,fullname=FullName,email=EMail,sshkey=SSHKey,groupName=GroupName)
+    return HttpResponse(0)
+
+def DeleteUser(request):
+    ID=request.GET['UserID']
+    models.Users.objects.filter(userID=ID).delete()
+    return HttpResponse(0)
+
+def getGroup(request):
+    Groups=models.Groups.objects.all()
+    data = serializers.serialize("json", Groups)
+    return HttpResponse(data)

@@ -23,3 +23,29 @@
     color:#F00;
     font-weight: bold;
 }
+
+  #EditUserPopover >tbody >tr >th {
+  color:#50575F;
+  background: none repeat scroll 0% 0% #F5F5F5;
+  pEditing: 6px;
+  font-weight: bold;
+  margin-right:8px;
+  vertical-align: top;
+  line-height: 26px;
+}
+#EditUserPopover >tbody >tr >td >div{
+  margin-left: 5px;
+  background-color: #FFF;
+}
+#EditUserNameCheck{
+    color:#F00;
+    font-weight: bold;
+}
+#EditUserIDCheck {
+    color:#F00;
+    font-weight: bold;
+}
+#EditUserPasswordCheck {
+    color:#F00;
+    font-weight: bold;
+}
