@@ -1,0 +1,84 @@
+
+<!--   lingjiancong    begin               -->
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/lingjiancongCss.css" rel="stylesheet">
+    <link href="/static/css/validate/screen.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--  lingjiancong      end               -->
+
+    <link href="/static/css/content/shared/styles/examples-offline.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.default.min.css" rel="stylesheet">
+    <link href="/static/css/styles/home.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/kendo.all.min.js"></script>
+    <script src="/static/js/headerBar.js"></script>
+    <script src="/static/js/treeView.js"></script>
+    <script src="/static/js/validate/jquery.validate.min.js"></script>
+</head>
+
+<body>
+
+  <!--   lingjiancong    begin               -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="/static/jquery/1.11.2/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/lingjiancong.js"></script>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="lingjiancongModalAddGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" id="AddGroupHidden0">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Group</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/" method="get" id="formAddGroupPopover">
+              <table id='addGroupPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="addGroupID">Group ID:</label></th>
+                    <td><div><input type="text" name="addGroupID" id="addGroupID" required/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addGroupName">Group Name:</label></th>
+                    <td><div><input type="text" name="addGroupName" id="addGroupName"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="permitSudo">Permit Sudo:</label></th>
+                    <td><div><input type="checkbox" name="permitSudo" id="permitSudo"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="allowRepeatedGIDs">Allow repeated GIDs:</label></th>
+                    <td><div><input type="checkbox" name="allowRepeatedGIDs" id="allowRepeatedGIDs"/></div></td>
+                  </tr>
+                </tbody>
+              </table>
+                <div class="modal-footer">
+                  <input type="submit" class="btn btn-default"  id="buttonAddGroup" value="OK" name="addGroup"></input>
+                 <button type="button" class="btn btn-primary" onclick=" $('#lingjiancongModalAddGroup').modal('hide');">Cancel</button>
+               </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   lingjiancong   end                 -->
