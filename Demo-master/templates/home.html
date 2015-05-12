@@ -44,7 +44,6 @@
     <script src="/static/js/hongyuqin.js"></script>
 
 
-
     <!-- Modal -->
     <div class="modal fade" id="hongyuqinModalAddUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -127,7 +126,7 @@
                   </tr>
                   <tr>
                     <th><label for="EditUserPassword">Password:</label></th>
-                    <td><div><input type="text" name="EditUserPassword" id="EditUserPassword"/></div><div id="EditUserPasswordCheck" style="display:none">
+                    <td><div><input type="text" name="EditUserPassword" id="EditUserPassword" style="background-color:white"/></div><div id="EditUserPasswordCheck" style="display:none">
                         Password did not match</div></td>
                   </tr>
                   <tr>
@@ -240,7 +239,7 @@
                                                     items:[
                                                     {% if UsersObjects %}
                                                             {% for User in UsersObjects %}
-                                                                {text:"{{ User.username }}",imageUrl:"/static/css/content/web/treeview/add_users.png"},
+                                                                {text:"{{ User.username }}",type:"user",imageUrl:"/static/css/content/web/treeview/add_users.png"},
                                                             {% endfor %}
                                                         {% endif %}
                                                             {text:"Add User",imageUrl:"/static/css/content/web/treeview/add_users.png"},

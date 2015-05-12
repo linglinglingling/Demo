@@ -1,0 +1,120 @@
+<!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalAddUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/addUser/" method="get" id="formAddUserPopover">
+              <table id='addUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="addUserID">User ID:</label></th>
+                    <td><div><input type="text" name="addUserID" id="addUserID"/><div id="addUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserName">User Name:</label></th>
+                    <td><div><input type="text" name="addUserName" id="addUserName"/></div><div id="addUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="addUserPassword" id="addUserPassword"/></div><div id="addUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="addUserPasswordConfirm" id="addUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="addFullName" id="addFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="addEMail">Email:</label></th>
+                    <td><div><input type="text" name="addEmail" id="addEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="addSSHKey" id="addSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="addGroupName">Group:</label></th>
+                      <td><div><select name="addGroupName" id="addGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="addUser()" id="buttonAddUser">OK</button>
+            <button type="button" class="btn btn-primary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->
+<!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel1">Edit User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/EditUser/" method="get" id="formEditUserPopover">
+              <table id='EditUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="EditUserID">User ID:</label></th>
+                    <td><div><input type="text" name="EditUserID" id="EditUserID"/><div id="EditUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserName">User Name:</label></th>
+                    <td><div><input type="text" name="EditUserName" id="EditUserName"/></div><div id="EditUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="EditUserPassword" id="EditUserPassword" style="background-color:white"/></div><div id="EditUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="EditUserPasswordConfirm" id="EditUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="EditFullName" id="EditFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="EditEMail">Email:</label></th>
+                    <td><div><input type="text" name="EditEmail" id="EditEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="EditSSHKey" id="EditSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="EditGroupName">Group:</label></th>
+                      <td><div><select name="EditGroupName" id="EditGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="EditUser()" id="buttonEditUser">Edit</button>
+            <button type="button" class="btn btn-primary" onclick="DeleteUser()" id="buttonDeleteUser">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->

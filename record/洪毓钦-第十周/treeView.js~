@@ -38,7 +38,6 @@
         url="/ajax/getGroup/";
         $.get(url,function(data){
                all=JSON.parse(data);
-                document.getElementById('EditGroupName').innerHTML="";
                for(var i=0, len = all.length;i<len;i++){
                  $('#EditGroupName').append("<option>"+all[i]["fields"]["groupName"]+"</option>");
                }

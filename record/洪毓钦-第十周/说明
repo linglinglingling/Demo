@@ -1,0 +1,11 @@
+home.html:添加user显示栏，AddUser,EditUser+DeleteUser界面。
+
+models.py:添加数据库 Users Groups及其字段。
+
+urls.py:网址对应的 views.py中的方法。
+
+views.py：与数据库交互，获得对应数据库中数据。
+
+hongyuqin.js:EditUser AddUser DeleteUser的前台验证和显示，与views.py交互操作数据库。
+
+treeView.js:AddUser 和 user（EditUser时显示的基本信息）的前台显示。
