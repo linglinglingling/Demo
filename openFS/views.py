@@ -7,9 +7,10 @@ from models import Users
 import models
 import json
 from django.core import serializers
-
-
-
+import rpyc
+import re
+from pandas import DataFrame,Series
+import pandas as pd
 
 def login(request):
     username = request.GET.get('username', None)
@@ -19,7 +20,7 @@ def login(request):
         for user in userList:
             if user.username == username and user.password == password:
                 request.session['username'] = username
-                return render_to_response('home.html', {'username': username})
+                return index(request)
     return render_to_response('login.html')
 
 
@@ -113,7 +114,29 @@ def manipulate(request):
     elif "addGroup" in request.GET:
         return addGroup(request)
 
+def format(res):
+    line=re.split(r'\n',res)
+    record={}
+    names=re.split('\s+',line[0].strip())
+    for li in line[1:]:
+        sp=re.split(r'\s+',li.strip())
+        record.setdefault(sp[0],{})
+        index=1
+        for i in sp[1:]:
+            record[sp[0]][names[index]]=i
+            index+=1
+    return json.dumps(record).encode('utf8')
 
+def run_command(request):
+    command=request.GET.get('val','')
+    try:
+        conn=rpyc.connect('localhost',9999)
+        res=conn.root.run(command)
+        if command=="df":
+            res=format(res)
+    except Exception,e:
+        res=str(e)
+    return HttpResponse(res)
 
 
 

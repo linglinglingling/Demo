@@ -43,8 +43,9 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--<script src="/static/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/static/build/dist/echarts.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/lingjiancong.js"></script>
+
 
     <!-- Modal -->
     <div class="modal fade" id="lingjiancongModalAddGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -273,7 +274,7 @@
         </div>
 
         <div id="contentPanel">
-             <div class="form-group">
+            <div class="form-group">
               <label for="command_info" id="label_command"> 请输入命令</label>
               <input type="text" class="form-control" id="command_info" placeholder="Enter command" onclick="call_submit_command();">
               <button class="btn btn-primary btn-sm" id="command_info_submit" onclick="call_submit_command();">submit</button> 
@@ -282,7 +283,6 @@
               <label for="command_result"> Return Result</label>
               <textarea class="form-control" rows="10" id="command_result" placeholder="Return result"></textarea>
              </div>
-             <div id="chart" style="height:320px;display:none" ></div>
            <!--  <p>Content Infomation</p>
             <input type="text"></input><button class="btn btn-primary btn-sm">submit</button> 
             <textarea class="content_textarea"></textarea> -->
@@ -338,13 +338,21 @@
           }
         });
 
+
+
         $("#command_info").keyup(function(event){
           if(event.keyCode == 13){
             $("#command_info_submit").click();
           }
         });        
+        // function hideAddGroup(){
+        //   $('#lingjiancongModalAddGroup').modal('hide');
+        //   $('"k-in k-state-selected"').blur();
+        //   alert("hello");
+        // }
+        // $("#AddGroupHidden0").click(hideAddGroup);
+        // $("#AddGroupHidden1").click(hideAddGroup);
 
     </script>
-     <script src="/static/js/lingjiancong.js"></script>
 </body>
 </html>

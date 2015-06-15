@@ -25,3 +25,29 @@
 	margin-left: 5px;
 	background-color: #FFF;
 }
+
+#contentPanel {
+	position: absolute;
+	left: 250px;
+	top: 100px;
+	/*height: 400px;*/
+	width:600px;
+	/*display: none;*/
+}
+
+.content_textarea {
+	width: 300px;
+	height: 500px;
+}
+
+#label_command {
+	display: block;
+}
+#command_info {
+	width: 60%;
+	display: inline-block;
+}
+#command_result{
+	height:400px;
+}
+

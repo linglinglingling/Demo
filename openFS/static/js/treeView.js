@@ -22,7 +22,7 @@
         alert("Large Mail");
     else if(model.text=="Unread Mail")
         alert("Unread Mail");
-    else if(/^\d+$/.test(model.text)){
+    else if(model.imageUrl=="/static/css/content/web/treeview/add_groups.png"){
         document.getElementById('EditGroupModalLabel').innerHTML=model.text;
         groupName=model.text;
         url="/search?groupName="+groupName;
@@ -39,5 +39,8 @@
                 document.getElementById('permitSudo123').checked=true;
         })
         $('#lingjiancongEditGroup').modal({backdrop: "static"});
+    }
+    else if(model.text=="System"){
+        document.getElementById("contentPanel").style.display="block";
     }
 }

@@ -1,0 +1,62 @@
+/**
+ * Created by ling on 15-4-17.
+ */
+
+function call_submit_command(){
+	command=document.getElementById("command_info").value
+	
+	 url="/command/"
+	 $.get(url,{
+	 	val:command
+	 },
+	 function(data,status){
+	 	document.getElementById("command_result").value=data;
+	 });
+}
+
+
+		require.config({
+			paths:{
+				echarts:"build/dist"
+			}
+		});
+	
+		require(
+			[
+				"echarts",
+				"echarts/chart/bar"
+			],
+            function(ec){
+				var chart=document.getElementById("chart");
+				var mychart=ec.init(chart);
+				var option={
+					tooltip:{
+						show:true
+					},
+					legend:{
+						data:["销量"]
+					},
+					xAxis:[
+						{
+							type:"category",
+							data:["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+						}
+					],
+					yAxis:[
+						{
+							type:"value"
+						}
+					],
+					series:[
+						{
+						"name":"销量",
+						"type":"bar",
+						"data":[5,20,40,10,10,20]
+						}
+					]
+				};
+
+				mychart.setOption(option);
+			}
+			);
+	</script> 

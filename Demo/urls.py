@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^addGroup/$',views.addGroup),
     url(r'^search/',views.search),
     url(r'^editGroup/',views.edit),
-    url(r'^$',views.manipulate)
+    url(r'^$',views.manipulate),
+    url(r'^command/$',views.run_command),
 )
