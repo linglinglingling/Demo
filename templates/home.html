@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <!--   hongyuqin    begin               -->
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <!-- Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/hongyuqinCss.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--  hongyuqin      end               -->
+
+    <link href="/static/css/content/shared/styles/examples-offline.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.rtl.min.css" rel="stylesheet">
+    <link href="/static/css/styles/kendo.default.min.css" rel="stylesheet">
+    <link href="/static/css/styles/home.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/kendo.all.min.js"></script>
+    <script src="/static/js/headerBar.js"></script>
+    <script src="/static/js/treeView.js"></script>
+</head>
+
+<body>
+    <!--   hongyuqin    begin               -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--<script src="/static/jquery/1.11.2/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/hongyuqin.js"></script>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalAddUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/addUser/" method="get" id="formAddUserPopover">
+              <table id='addUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="addUserID">User ID:</label></th>
+                    <td><div><input type="text" name="addUserID" id="addUserID"/><div id="addUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserName">User Name:</label></th>
+                    <td><div><input type="text" name="addUserName" id="addUserName"/></div><div id="addUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="addUserPassword" id="addUserPassword"/></div><div id="addUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="addUserPasswordConfirm" id="addUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="addFullName" id="addFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="addEMail">Email:</label></th>
+                    <td><div><input type="text" name="addEmail" id="addEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="addSSHKey" id="addSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="addGroupName">Group:</label></th>
+                      <td><div><select name="addGroupName" id="addGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="addUser()" id="buttonAddUser">OK</button>
+            <button type="button" class="btn btn-primary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->
+<!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel1">Edit User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/EditUser/" method="get" id="formEditUserPopover">
+              <table id='EditUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="EditUserID">User ID:</label></th>
+                    <td><div><input type="text" name="EditUserID" id="EditUserID"/><div id="EditUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserName">User Name:</label></th>
+                    <td><div><input type="text" name="EditUserName" id="EditUserName"/></div><div id="EditUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="EditUserPassword" id="EditUserPassword" style="background-color:white"/></div><div id="EditUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="EditUserPasswordConfirm" id="EditUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="EditFullName" id="EditFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="EditEMail">Email:</label></th>
+                    <td><div><input type="text" name="EditEmail" id="EditEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="EditSSHKey" id="EditSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="EditGroupName">Group:</label></th>
+                      <td><div><select name="EditGroupName" id="EditGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="EditUser()" id="buttonEditUser">Edit</button>
+            <button type="button" class="btn btn-primary" onclick="DeleteUser()" id="buttonDeleteUser">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->
+    <div id="content" style="position:relative;height:auto;min-height:100%">
+        <div id="header">
+                 &nbsp;&nbsp;<a href="/" title="FreeNAS"><img src="/static/images/freenas-logo.png"></a></div><br/>
+
+                 <div style="width:80px;float:left;margin:0px 0px 0px 20px" onclick="openSystem()">
+                     &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/system.png" /><br/>
+                     <span>System</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/network.png" /><br/>
+                     <span>Network</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/storage.png" /><br/>
+                     <span>Storage</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/sharing.png" /><br/>
+                     <span>Sharing</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/services.png" /><br/>
+                     <span>Services</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/plugins.png" /><br/>
+                     <span>Plugins</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    <img src="/static/css/content/web/treeview/menu/jails.png" /><br/>
+                     <span>Jails</span>
+                 </div>
+                 <div id="headerBarLeft">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/css/content/web/treeview/menu/reporting.png" /><br/>
+                     <span>Reporting</span>
+                 </div>
+
+
+                <div id="headerBarRight">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/images/ui/menu/alerts/ok.png" /><br/>&nbsp;&nbsp;
+                    <span>Alert</span>
+                </div>
+                <div id="headerBarRight">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/images/ui/menu/logout.png" /><br/>
+                    <span>Log Out</span>
+                </div>
+                <div id="headerBarRight">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/images/ui/menu/help.png" /><br/>&nbsp;&nbsp;
+                    <span>Help</span>
+                </div>
+                <div id="headerBarRight">
+                    &nbsp;&nbsp;&nbsp;<img src="/static/images/ui/menu/account.png" /><br/>
+                     <span>Account</span>
+                </div><br/><br/><br/>
+
+        <div id="content" style="width:100%;height:720px;">
+        <div id="example" style="width:16%;height:650px;float:left;overflow-y:scroll;">
+                    <div id="narTree" ></div>
+                <script>
+                    $("#narTree").kendoTreeView(
+                            {
+                                dataSource: [
+                                {
+                                    text: "Account", imageUrl: "/static/css/content/web/treeview/account.png",
+                                    items: [
+                                                { text: "Groups", imageUrl: "/static/css/content/web/treeview/groups.png",
+                                                    items:[
+                                                        {text:"Add Group",imageUrl:"/static/css/content/web/treeview/add_groups.png"},
+                                                        {text:"View Groups",imageUrl:"/static/css/content/web/treeview/view_all_groups.png"},
+                                                    ]
+                                                },
+                                                { text: "Users", imageUrl: "/static/css/content/web/treeview/users.png" ,
+                                                    items:[
+                                                    {% if UsersObjects %}
+                                                            {% for User in UsersObjects %}
+                                                                {text:"{{ User.username }}",type:"user",imageUrl:"/static/css/content/web/treeview/add_users.png"},
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                            {text:"Add User",imageUrl:"/static/css/content/web/treeview/add_users.png"},
+                                                            {text:"View Users",imageUrl:"/static/css/content/web/treeview/view_all_users.png"},
+                                                        ]
+
+                                                },
+                                            ]
+                                },
+                                {
+                                    text: "System", imageUrl: "/static/css/content/web/treeview/system.png"
+                                },
+                                {
+                                    text: "Network", expanded: true, imageUrl: "/static/css/content/web/treeview/network.png",
+                                    items: [
+                                        { text: "Categorized Mail", imageUrl: "/static/css/content/web/treeview/search.png" },
+                                        { text: "Large Mail", imageUrl: "/static/css/content/web/treeview/search.png" },
+                                        { text: "Unread Mail", imageUrl: "/static/css/content/web/treeview/search.png" }
+                                    ]
+                                },
+                                 {
+                                    text: "Storage", imageUrl: "/static/css/content/web/treeview/storage.png"
+                                 },
+                                {
+                                    text: "Sharing", imageUrl: "/static/css/content/web/treeview/sharing.png"
+                                },
+                                {
+                                    text: "Services", imageUrl: "/static/css/content/web/treeview/services.png"
+                                },
+                                {
+                                    text: "Jails", imageUrl: "/static/css/content/web/treeview/jail.png"
+                                },
+                                {
+                                    text: "Reporting", imageUrl: "/static/css/content/web/treeview/reporting.png"
+                                },
+                                {
+                                    text: "Display System Processes", imageUrl: "/static/css/content/web/treeview/display_system_processes.png"
+                                },
+                                {
+                                    text: "Shell", imageUrl: "/static/css/content/web/treeview/16x16_shell.png"
+                                },
+                                {
+                                    text: "Reboot", imageUrl: "/static/css/content/web/treeview/reboot.png"
+                                },
+                                {
+                                    text: "Shutdown", imageUrl: "/static/css/content/web/treeview/shutdown.png"
+                                }
+                            ],
+                         select: handleSelectedEvent
+                    });
+
+
+
+                </script>
+            </div>
+
+        </div>
+
+         <div id="footer">
+            <br/>
+            <br/>
+            <div style="float:right;">
+                <img src="/static/images/ui/bottom/ix_logo.png" border="0" alt="iXsystems, Inc."/>
+            </div>
+            <div id="footerPane" style="float:left;">
+                FreeNAS&reg; &copy; 2015 <a href="http://www.ixsystems.com" target="_blank" title="iXsystems, Inc.">iXsystems, Inc.</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
