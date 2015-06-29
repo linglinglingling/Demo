@@ -12,8 +12,13 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 
     <!-- Bootstrap -->
+	
+    
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/lingjiancongCss.css" rel="stylesheet">
+    <link href="/static/css/hongyuqinCss.css" rel="stylesheet">
+    <link href="/static/css/yujuncheng.css" rel="stylesheet">
+    <link href="/static/css/Addcss.css" rel="stylesheet">
     <link href="/static/css/validate/screen.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -30,11 +35,17 @@
     <link href="/static/css/styles/kendo.rtl.min.css" rel="stylesheet">
     <link href="/static/css/styles/kendo.default.min.css" rel="stylesheet">
     <link href="/static/css/styles/home.css" rel="stylesheet">
+
+   
+    <script src="/static/js/treeView.js"></script>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/kendo.all.min.js"></script>
     <script src="/static/js/headerBar.js"></script>
-    <script src="/static/js/treeView.js"></script>
     <script src="/static/js/validate/jquery.validate.min.js"></script>
+    <script src="/static/js/packed.js"></script>
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/tdchange.js"></script>
+    <script src="/static/js/Addjs.js"></script>
 </head>
 
 <body>
@@ -43,9 +54,8 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--<script src="/static/jquery/1.11.2/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/static/build/dist/echarts.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
-    <script src="/static/js/lingjiancong.js"></script>
-
 
     <!-- Modal -->
     <div class="modal fade" id="lingjiancongModalAddGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -125,6 +135,199 @@
       </div>
     </div>
 
+<!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalAddUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Add User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/addUser/" method="get" id="formAddUserPopover">
+              <table id='addUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="addUserID">User ID:</label></th>
+                    <td><div><input type="text" name="addUserID" id="addUserID"/><div id="addUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserName">User Name:</label></th>
+                    <td><div><input type="text" name="addUserName" id="addUserName"/></div><div id="addUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="addUserPassword" id="addUserPassword"/></div><div id="addUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="addUserPasswordConfirm" id="addUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="addFullName" id="addFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="addEMail">Email:</label></th>
+                    <td><div><input type="text" name="addEmail" id="addEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="addSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="addSSHKey" id="addSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="addGroupName">Group:</label></th>
+                      <td><div><select name="addGroupName" id="addGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="addUser()" id="buttonAddUser">OK</button>
+            <button type="button" class="btn btn-primary">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->
+
+
+  <div id="contentInfo" style="position: absolute;top:160px;left:225px; z-index: 1;display: none; ">
+            </br>
+    	<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable" >
+		<thead>
+			<tr>
+				<th><h3>Group ID</h3></th>
+				<th><h3>Group Name</h3></th>
+				<th><h3>Built-in Group</h3></th>
+				<th><h3>Peimit Sudo</h3></th>
+			</tr>
+		</thead>
+		<tbody>
+{#                {% for ID in test.groups %}#}
+{#                    <tr>#}
+{#                        <td>{{ groupID }}</td>#}
+{#                        <td>{{ groupName }}</td>#}
+{#                        <td>{{ BuiltInGroup }}</td>#}
+{#                        <td>{{permitSudo }} }}</td>#}
+{#                    </tr>#}
+{#                  {% endfor %}#}
+{#       {{  gr }}#}
+       {% for group in groupsObjects %}
+                    <tr>
+                        <td>{{ group.groupID }}</td>
+                        <td>{{ group.groupName }}</td>
+                        <td>false</td>
+                        <td>{{ group.permitSudo }} </td>
+                    </tr>
+        {% endfor %}
+		</tbody>
+  </table>
+	<div id="controls">
+		<div id="perpage">
+			<select onChange="sorter.size(this.value)">
+			<option value="5">5</option>
+				<option value="10" selected="selected">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+				<option value="100">100</option>
+			</select>
+			<span>Entries Per Page</span>
+		</div>
+		<div id="navigation">
+			<img src="/static/images/first.gif" width="16" height="16" alt="First Page" onClick="sorter.move(-1,true)" />
+			<img src="/static/images/previous.gif" width="16" height="16" alt="First Page" onClick="sorter.move(-1)" />
+			<img src="/static/images/next.gif" width="16" height="16" alt="First Page" onClick="sorter.move(1)" />
+			<img src="/static/images/last.gif" width="16" height="16" alt="Last Page" onClick="sorter.move(1,true)" />
+		</div>
+        <div id="text">Displaying Page <span id="currentpage"></span> of <span id="pagelimit"></span></div>
+        </div>
+        <script type="text/javascript">
+        var sorter = new TINY.table.sorter("sorter");
+        sorter.head = "head";
+        sorter.asc = "asc";
+        sorter.desc = "desc";
+        sorter.even = "evenrow";
+        sorter.odd = "oddrow";
+        sorter.evensel = "evenselected";
+        sorter.oddsel = "oddselected";
+        sorter.paginate = true;
+        sorter.currentid = "currentpage";
+        sorter.limitid = "pagelimit";
+        sorter.init("table",1);
+        </script>
+    </div>
+
+
+
+
+
+<!-- Modal -->
+    <div class="modal fade" id="hongyuqinModalEditUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel1">Edit User</h4>
+          </div>
+          <div class="modal-body">
+            <form action="/EditUser/" method="get" id="formEditUserPopover">
+              <table id='EditUserPopover' >
+                <tbody>
+                  <tr>
+                    <th><label for="EditUserID">User ID:</label></th>
+                    <td><div><input type="text" name="EditUserID" id="EditUserID"/><div id="EditUserIDCheck" style="display:none">The id already exits</div></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserName">User Name:</label></th>
+                    <td><div><input type="text" name="EditUserName" id="EditUserName"/></div><div id="EditUserNameCheck" style="display:none">The name already exits</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPassword">Password:</label></th>
+                    <td><div><input type="text" name="EditUserPassword" id="EditUserPassword" style="background-color:white"/></div><div id="EditUserPasswordCheck" style="display:none">
+                        Password did not match</div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditUserPasswordConfirm">Password Confirm:</label></th>
+                    <td><div><input type="text" name="EditUserPasswordConfirm" id="EditUserPasswordConfirm"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditFullName">Full Name:</label></th>
+                    <td><div><input type="text" name="EditFullName" id="EditFullName"/></div></td>
+                  </tr>
+                   <tr>
+                    <th><label for="EditEMail">Email:</label></th>
+                    <td><div><input type="text" name="EditEmail" id="EditEMail"/></div></td>
+                  </tr>
+                  <tr>
+                    <th><label for="EditSSHKey">SSH Public Key:</label></th>
+                    <td><div><textarea name="EditSSHKey" id="EditSSHKey" cols="20" rows="5"></textarea></div></td>
+                  </tr>
+                  <tr>
+                      <th><label for="EditGroupName">Group:</label></th>
+                      <td><div><select name="EditGroupName" id="EditGroupName">
+                      </select>
+                      </div>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default"  onclick="EditUser()" id="buttonEditUser">Edit</button>
+            <button type="button" class="btn btn-primary" onclick="DeleteUser()" id="buttonDeleteUser">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--   hongyuqin   end                 -->
+
     <div id="content" style="position:relative;height:auto;min-height:100%">
         <div id="header">
                  &nbsp;&nbsp;<a href="/" title="FreeNAS"><img src="/static/images/freenas-logo.png"></a></div><br/>
@@ -203,6 +406,11 @@
                                                 },
                                                 { text: "Users", imageUrl: "/static/css/content/web/treeview/users.png" ,
                                                     items:[
+ 							{% if UsersObjects %}
+                                                            {% for User in UsersObjects %}
+                                                                {text:"{{ User.username }}",type:"user",imageUrl:"/static/css/content/web/treeview/add_users.png"},
+                                                            {% endfor %}
+                                                        {% endif %}
                                                             {text:"Add User",imageUrl:"/static/css/content/web/treeview/add_users.png"},
                                                             {text:"View Users",imageUrl:"/static/css/content/web/treeview/view_all_users.png"},
                                                         ]
@@ -257,24 +465,11 @@
                 </script>
             </div>
 
-        <div id="contentInfo"></br>
-            <div id="tab" style="margin-left:250px;">
-                <div class="tabList">
-	                <ul>
-		                <li class="cur" style="float:left;list-style-type: none">Setting</li>
-		                <li style="float:left;list-style-type: none;">System information</li>
-	                </ul>
-                </div>
-                <div class="tabCon" style="margin-left: 40px">
-                    <div class="cur">hostname</div>
-                    <div>System information</div>
-                 </div>
-            </div>
-
-        </div>
+	
+	<div id="contentR"></div>
 
         <div id="contentPanel">
-            <div class="form-group">
+             <div class="form-group">
               <label for="command_info" id="label_command"> 请输入命令</label>
               <input type="text" class="form-control" id="command_info" placeholder="Enter command" onclick="call_submit_command();">
               <button class="btn btn-primary btn-sm" id="command_info_submit" onclick="call_submit_command();">submit</button> 
@@ -283,6 +478,7 @@
               <label for="command_result"> Return Result</label>
               <textarea class="form-control" rows="10" id="command_result" placeholder="Return result"></textarea>
              </div>
+             <div id="chart" style="height:320px;display:none" ></div>
            <!--  <p>Content Infomation</p>
             <input type="text"></input><button class="btn btn-primary btn-sm">submit</button> 
             <textarea class="content_textarea"></textarea> -->
@@ -338,21 +534,14 @@
           }
         });
 
-
-
         $("#command_info").keyup(function(event){
           if(event.keyCode == 13){
             $("#command_info_submit").click();
           }
         });        
-        // function hideAddGroup(){
-        //   $('#lingjiancongModalAddGroup').modal('hide');
-        //   $('"k-in k-state-selected"').blur();
-        //   alert("hello");
-        // }
-        // $("#AddGroupHidden0").click(hideAddGroup);
-        // $("#AddGroupHidden1").click(hideAddGroup);
 
     </script>
+     <script src="/static/js/lingjiancong.js"></script>
+     <script src="/static/js/hongyuqin.js"></script>
 </body>
 </html>

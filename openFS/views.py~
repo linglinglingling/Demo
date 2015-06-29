@@ -269,5 +269,4 @@ def get(request):
         names = ['Michael', 'Bob']
 
     return render_to_response('contentR.html', locals())
-    return render_to_response('contentR.html', {'groupsObjects':groups,'UsersObjects':Users,'lists':lists})
 

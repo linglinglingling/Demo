@@ -22,5 +22,5 @@ urlpatterns = patterns('',
     url(r'^ajax/getGroup/$',views.getGroup),
     url(r'^ajax/checkViewGroups/',views.ViewGroups),
     url(r'^ViewGroups/$',views.ViewGroups),
-    url(r'^get/$', views.get),
+    url(r'^get/$', views.get)
 )

@@ -1,0 +1,117 @@
+{% if id == 'account' %}
+    <div id="myTab" style="margin-left:250px;">
+        <div class="tabList">
+            <ul>
+                {% if account == 'user' %}
+                    <li onclick="showAccount('groups')" >Groups</li>
+                    <li class="select">Users</li>
+                {% else %}
+                    <li class="select">Groups</li>
+                    <li onclick="showAccount('user')" >Users</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div style="margin-left:250px;">
+        <div style="height:2px"></div>
+        <div style="height:30px">
+            {% if account == 'user' %}
+                <span class="btn btn-primary btn-sm" id="command_info_submit">Add User</span>
+            {% else %}
+                <span class="btn btn-primary btn-sm" id="command_info_submit">Add Groups</span>
+            {% endif %}
+        </div>
+        <div style="height:2px"></div>
+        {% if account == 'user' %}
+            <div id="user-table">
+                <div id="user-table-top">
+                    <table border="1">
+                        <tr>
+                            <th><div class="user-table-top-1">User ID</div></th>
+                            <th><div class="user-table-top-2">Username</div></th>
+                            <th><div class="user-table-top-3">Primary Group ID</div></th>
+                            <th><div class="user-table-top-4">Home Directory</div></th>
+                            <th><div class="user-table-top-5">Shell</div></th>
+                            <th><div class="user-table-top-6">Full Name</div></th>
+                            <th><div class="user-table-top-7">Built-in User</div></th>
+                            <th><div class="user-table-top-8">E-mail</div></th>
+                            <th><div class="user-table-top-9">Disable password login</div></th>
+                            <th><div class="user-table-top-10">Lock user</div></th>
+                            <th><div class="user-table-top-11">Permit Sudo</div></th>
+                            <th><div class="user-table-top-12">Microsoft Account</div></th>
+                        </tr>
+                    </table>
+                </div>
+                <div id="user-table-content" style="height:350px;overflow-y:scroll;">
+                    {% for list in lists %}
+                        <div class="table-content-user">
+                            <table border="1">
+                                <tr>
+                                    <td class="user-table-content">{{ list.userID }}</td>
+                                    <td class="user-table-content">{{ list.username }}</td>
+                                    <td class="user-table-content">{{ primary_group_id }}</td>
+                                    <td class="user-table-content">{{ home_directory }}</td>
+                                    <td class="user-table-content">{{ Shell }}</td>
+                                    <td class="user-table-content">{{ list.fullname }}</td>
+                                    <td class="user-table-content">{{ bi_user }}</td>
+                                    <td class="user-table-content">{{ list.email }}</td>
+                                    <td class="user-table-content">{{ disable_password_login }}</td>
+                                    <td class="user-table-content">{{ lock_user }}</td>
+                                    <td class="user-table-content">{{ permit_sudo }}</td>
+                                    <td class="user-table-content">{{ microsoft_account }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+{% if id == 'reporting' %}
+    <div id="myTab" style="margin-left:250px;">
+        <div class="tabList">
+            <ul>
+                {% if reporting == 'cpu' %}
+                    <li class="select">CPU</li>
+                    <li onclick="ShowReporting('disk')">Disk</li>
+                    <li onclick="ShowReporting('memory')">Memory</li>
+                    <li onclick="ShowReporting('network')">NetWork</li>
+                {% endif %}
+                {% if reporting == 'disk' %}
+                    <li onclick="ShowReporting('cpu')" >CPU</li>
+                    <li class="select">Disk</li>
+                    <li onclick="ShowReporting('memory')">Memory</li>
+                    <li onclick="ShowReporting('network')">NetWork</li>
+                {% endif %}
+                {% if reporting == 'memory' %}
+                    <li onclick="ShowReporting('cpu')" >CPU</li>
+                    <li onclick="ShowReporting('disk')">Disk</li>
+                    <li class="select">Memory</li>
+                    <li onclick="ShowReporting('network')">NetWork</li>
+                {% endif %}
+                {% if reporting == 'network' %}
+                    <li onclick="ShowReporting('cpu')" >CPU</li>
+                    <li onclick="ShowReporting('disk')">Disk</li>
+                    <li onclick="ShowReporting('memory')">Memory</li>
+                    <li class="select">NetWork</li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% if reporting == 'network' %}
+        {% for name in names %}
+            <div>
+                <img style="float:left;"src=" ">
+                <span><img alt="Zoom In" src="/static/images/ui/buttons/zoom-in.png"></span>
+                </br>
+                <span><img alt="Zoom Out" src="/static/images/ui/buttons/zoom-out.png"></span>
+                </br>
+                <span><<</span>
+                </br>
+                <span>>></span>
+                </br>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
